@@ -18,6 +18,8 @@
     $accion = $_GET["accion"] ?? null;
     $id = $_GET["id"] ?? null;
 
+    $filtro = $_GET['filtro'] ?? '1';
+
     if (isset($id) && isset($accion)) {
         $_SESSION['libros'] = cambiarEstadoLibro($_SESSION['libros'], $id, $accion);
     }
@@ -39,6 +41,19 @@
         
         foreach ($libros as $libro) {
             if ($libro['genero'] == $genero) {
+                array_push($resultado, $libro);
+            }
+        }
+
+        return $resultado;
+    }
+
+    function filtrarPorDisponibilidad($libros, $disponibilidad) {
+        
+        $resultado = [];
+        
+        foreach ($libros as $libro) {
+            if ($libro['disponible'] == $disponibilidad) {
                 array_push($resultado, $libro);
             }
         }
@@ -71,6 +86,18 @@
     <?php mostrarLibros(filtrarPorGenero($libros, "ciencia ficción")) ?>
     <hr>
     <h2>Filtro personalizado</h2>
+    <form method="GET">
+        <select name="filtro">
+            <option value="1" <?= $filtro === '1' ? 'selected' : ''?>>Solo disponibles</option>
+            <option value="0" <?= $filtro === '0' ? 'selected' : ''?>>Solo prestados</option>
+        </select>
+        <button>Filtrar</button>
+    </form>
+    <?php 
+        if (isset($_GET['filtro'])) {
+            mostrarLibros(filtrarPorDisponibilidad($libros, $_GET['filtro'] === '1'));
+        }
+    ?>
     <hr>
     <p><i>Total: <?=count($libros)?> libros</i></p>
     <hr>
