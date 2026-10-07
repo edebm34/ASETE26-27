@@ -4,7 +4,7 @@
 
 ## 1. Diferencia GET y POST, con un ejemplo de tu código donde usarías cada uno.
 
-GET pide datos y los parámetros aparecen en la URL. POST, en cambio, envía datos en el cuerpo de la petición y es usado para información sensible o acciones que cambian el estado.
+GET pide datos y los parámetros aparecen en la URL. POST, en cambio, envía datos en el cuerpo de la petición y es usado para información sensible o acciones que cambian el estado. En nuestro código usamos POST para los datos de inicio de sesión (sensible) en el login, y el GET lo usamos en el Reto 1.1 para probar, además de sus usos implícitos.
 
 ## 2. ¿Qué es una cabecera HTTP? Pon un ejemplo de cabecera de petición y otro de respuesta que hayas visto hoy.
 
@@ -45,3 +45,17 @@ Si edita PHPSESSID el server no va a poder encontrar la sesión, así que te man
 ## 9. ¿Qué significa que PHPSESSID tenga HttpOnly? ¿Qué ataque mitiga?
 
 Significa que JavaScript no va a poder leer la cookie y, por lo tanto, PHPSESSID no va a aparecer si haces `document.cookie`.
+
+# Capturas de pantalla
+
+## Panel 'Mis Tareas' del usuario
+![Panel 'Mis Tareas' del usuario](capturas/usuario.png)
+
+## Panel del administrador
+![Panel del administrador](capturas/admin.png)
+
+## Cookies almacenadas
+![Cookies](capturas/cookies.png)
+
+## Set-Cookies en la respuesta del login
+![Set-Cookies en la respuesta del login](capturas/set.png)
