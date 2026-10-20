@@ -35,6 +35,8 @@ class MaterialBiblioteca implements Prestable {
 
     public function setTitulo(string $t): void { $this->titulo = $t; }
     public function setDisponible(bool $d): void { $this->disponible = $d; }
+    public function setAnio(?int $a): void { $this->anio = $a; }
+    public function setAutor(string $a): void { $this->autor = $a; }
 
     // --- Contrato Prestable ---
     public function prestar(): bool {
@@ -62,4 +64,13 @@ class MaterialBiblioteca implements Prestable {
         if ($this->anio === null) return 0;
         return (int)date('Y') - $this->anio;
     }
+
+    public function esAntiguo(): bool {
+        return $this->antiguedad() > 50;
+    }
+
+    public function resumen(): string {
+        return $this->tipoMaterial() . ' : ' . $this->getTitulo();
+    }
+
 }

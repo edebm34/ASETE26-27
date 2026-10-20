@@ -20,7 +20,7 @@ require __DIR__ . '/includes/header.php';
   <dt>Tipo</dt><dd><?= htmlspecialchars($material->tipoMaterial()) ?></dd>
   <dt>Autor</dt><dd><?= htmlspecialchars($material->getAutor()) ?></dd>
   <dt>Año</dt><dd><?= $material->getAnio() ?? '—' ?></dd>
-  <dt>Antigüedad</dt><dd><?= $material->antiguedad() ?> años</dd>
+  <dt>Antigüedad</dt><dd><?= $material->antiguedad() ?> años  <?php if ($material->esAntiguo()) echo "⚠️ Fondo histórico";?></dd>
   <dt>Días de préstamo</dt><dd><?= $material->diasPrestamo() ?></dd>
   <dt>Añadido al catálogo</dt><dd><?= $material->fechaFormateada() ?></dd>
   <dt>Estado</dt><dd><?= $material->isDisponible() ? 'Disponible' : 'Prestado' ?></dd>

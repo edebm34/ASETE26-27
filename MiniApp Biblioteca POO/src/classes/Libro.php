@@ -24,4 +24,8 @@ class Libro extends MaterialBiblioteca {
     public function mostrarFicha(): string {
         return parent::mostrarFicha() . ' · ISBN: ' . $this->isbn;
     }
+
+    public function resumen(): string {
+        return "Libro: " . $this->titulo . ' — ' . $this->autor;
+    }
 }
