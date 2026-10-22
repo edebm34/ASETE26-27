@@ -33,4 +33,11 @@ require __DIR__ . '/includes/header.php';
   </form>
 <?php endif; ?>
 
+<?php if (!$material->isDisponible()): ?>
+  <form method="POST" action="devolver.php">
+    <input type="hidden" name="material_id" value="<?= $material->getId() ?>">
+    <button>Devolver</button>
+  </form>
+<?php endif; ?>
+
 <?php require __DIR__ . '/includes/footer.php'; ?>

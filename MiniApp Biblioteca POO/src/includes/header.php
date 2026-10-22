@@ -3,12 +3,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>MiniApp Tareas</title>
+  <title>MiniApp Biblioteca POO</title>
 </head>
 <body>
 <nav>
   <?php if (currentUser()): ?>
-    <a href="/index.php">Mis tareas</a>
+    <a href="/index.php">Catálogo</a>
     <?php if (currentUser()['rol'] === 'admin'): ?>
       | <a href="/admin.php">Panel admin</a>
     <?php endif; ?>
