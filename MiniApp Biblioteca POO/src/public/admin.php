@@ -1,6 +1,12 @@
 <?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/Includes/auth.php';
+require_once __DIR__ . '/../app/Includes/exceptions.php';
+
 requireAdmin();
+
 require __DIR__ . '/../app/Includes/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {

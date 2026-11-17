@@ -1,8 +1,15 @@
 <?php
+declare(strict_types=1);
+
+namespace App\Repos;
+
+use App\Classes\DVD;
+use App\Classes\Libro;
+use App\Classes\MaterialBiblioteca;
+use App\Classes\Revista;
+use App\Exceptions\MaterialNoEncontradoException;
+
 require_once __DIR__ . '/../Config/db.php';
-require_once __DIR__ . '/../Classes/Libro.php';
-require_once __DIR__ . '/../Classes/Revista.php';
-require_once __DIR__ . '/../Classes/DVD.php';
 
 class MaterialRepo {
 
@@ -15,11 +22,17 @@ class MaterialRepo {
         return $materiales;
     }
 
-    public function findById(int $id): ?MaterialBiblioteca {
+    public function findById(int $id): MaterialBiblioteca // Ya no necesitamos la ?
+    {
         $stmt = db()->prepare('SELECT * FROM materiales WHERE id = ?');
         $stmt->execute([$id]);
         $fila = $stmt->fetch();
-        return $fila ? $this->hidratar($fila) : null;
+
+        if ($fila === false) {
+            throw new MaterialNoEncontradoException($id);
+        }
+
+        return $this->hidratar($fila);
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php
-// src/classes/MaterialBiblioteca.php
-require_once __DIR__ . '/Prestable.php';
-require_once __DIR__ . '/Traits/TieneFechas.php';
-require_once __DIR__ . '/Traits/Loggable.php';
+declare(strict_types=1);
+
+namespace App\Classes;
+
+use App\Classes\Traits\TieneFechas;
+use App\Classes\Traits\Loggable;
 
 class MaterialBiblioteca implements Prestable {
     use TieneFechas, Loggable;

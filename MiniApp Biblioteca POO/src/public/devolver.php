@@ -1,8 +1,13 @@
 <?php
+declare(strict_types=1);
 require_once __DIR__ . '/../app/Includes/auth.php';
+require_once __DIR__ . '/../app/Includes/exceptions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 requireLogin();
+
 require_once __DIR__ . '/../app/Config/db.php';
-require_once __DIR__ . '/../app/Repos/MaterialRepo.php';
+
+use App\Repos\MaterialRepo;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');

@@ -1,18 +1,32 @@
 <?php
-require_once __DIR__ . '/../app/Includes/auth.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/Includes/exceptions.php';
+
+use App\Exceptions\MaterialNoEncontradoException;
+use App\Includes\auth;
+use App\Repos\MaterialRepo;
+
 requireLogin();
-require_once __DIR__ . '/../app/Repos/MaterialRepo.php';
 
 $id = (int)($_GET['id'] ?? 0);
-$repo = new MaterialRepo();
-$material = $repo->findById($id);
 
-if (!$material) {
+try {
+    $repo = new MaterialRepo();
+    $material = $repo->findById($id);
+} catch (MaterialNoEncontradoException $e) {
     http_response_code(404);
-    exit('Material no encontrado');
+    require __DIR__ . '/../app/Includes/header.php';
+    echo '<h1>Material no encontrado</h1>';
+    echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
+    echo '<a href="/index.php">Volver al catálogo</a>';
+    require __DIR__ . '/../app/Includes/footer.php';
+    exit;
 }
 
 require __DIR__ . '/../app/Includes/header.php';
+
 ?>
 <h1><?= htmlspecialchars($material->mostrarFicha()) ?></h1>
 
