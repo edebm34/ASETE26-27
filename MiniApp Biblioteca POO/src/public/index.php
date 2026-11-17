@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/Includes/auth.php';
 requireLogin();
-require_once __DIR__ . '/repos/MaterialRepo.php';
+require_once __DIR__ . '/Repos/MaterialRepo.php';
 
 $repo = new MaterialRepo();
 $materiales = $repo->findAll();
 
-require __DIR__ . '/includes/header.php';
+require __DIR__ . '/Includes/header.php';
 ?>
 <h1>Catálogo de la biblioteca</h1>
 
@@ -22,4 +22,4 @@ require __DIR__ . '/includes/header.php';
 <?php endforeach; ?>
 </ul>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/Includes/footer.php'; ?>

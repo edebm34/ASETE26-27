@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/Includes/auth.php';
 requireLogin();
-require_once __DIR__ . '/config/db.php';
-require_once __DIR__ . '/repos/MaterialRepo.php';
+require_once __DIR__ . '/Config/db.php';
+require_once __DIR__ . '/Repos/MaterialRepo.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/Includes/auth.php';
 
 $error = '';
 $email = '';
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require __DIR__ . '/includes/header.php';
+require __DIR__ . '/Includes/header.php';
 ?>
 <h1>Iniciar sesión</h1>
 
@@ -53,4 +53,4 @@ require __DIR__ . '/includes/header.php';
   <button type="submit">Entrar</button>
 </form>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/Includes/footer.php'; ?>
