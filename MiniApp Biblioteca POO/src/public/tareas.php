@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/Includes/auth.php';
+require_once __DIR__ . '/../app/Includes/auth.php';
 requireLogin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
