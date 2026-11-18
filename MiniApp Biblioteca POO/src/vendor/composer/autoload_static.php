@@ -21,6 +21,18 @@ class ComposerStaticInit7421730d9690e10821f487477c035947
     );
 
     public static $classMap = array (
+        'App\\Classes\\DVD' => __DIR__ . '/../..' . '/app/Classes/DVD.php',
+        'App\\Classes\\Libro' => __DIR__ . '/../..' . '/app/Classes/Libro.php',
+        'App\\Classes\\MaterialBiblioteca' => __DIR__ . '/../..' . '/app/Classes/MaterialBiblioteca.php',
+        'App\\Classes\\Prestable' => __DIR__ . '/../..' . '/app/Classes/Prestable.php',
+        'App\\Classes\\Revista' => __DIR__ . '/../..' . '/app/Classes/Revista.php',
+        'App\\Classes\\Traits\\Loggable' => __DIR__ . '/../..' . '/app/Classes/Traits/Loggable.php',
+        'App\\Classes\\Traits\\TieneFechas' => __DIR__ . '/../..' . '/app/Classes/Traits/TieneFechas.php',
+        'App\\Exceptions\\LimitePrestamosException' => __DIR__ . '/../..' . '/app/Exceptions/LimitePrestamosException.php',
+        'App\\Exceptions\\MaterialNoDisponibleException' => __DIR__ . '/../..' . '/app/Exceptions/MaterialNoDisponibleException.php',
+        'App\\Exceptions\\MaterialNoEncontradoException' => __DIR__ . '/../..' . '/app/Exceptions/MaterialNoEncontradoException.php',
+        'App\\Repos\\MaterialRepo' => __DIR__ . '/../..' . '/app/Repos/MaterialRepo.php',
+        'App\\Services\\PrestamoService' => __DIR__ . '/../..' . '/app/Services/PrestamoService.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

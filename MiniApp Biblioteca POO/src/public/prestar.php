@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/Includes/exceptions.php';
+require_once __DIR__ . '/../app/Includes/auth.php';
 
 use App\Exceptions\MaterialNoDisponibleException;
 use App\Exceptions\MaterialNoEncontradoException;
+use App\Exceptions\LimitePrestamosException;
 use App\Includes\auth;
 use App\Repos\MaterialRepo;
 use App\Services\PrestamoService;
@@ -31,6 +33,9 @@ try {
     $error = $e->getMessage();
 } catch (MaterialNoDisponibleException $e) {
     http_response_code(400);
+    $error = $e->getMessage();
+} catch (LimitePrestamosException $e) {
+    http_response_code(403);
     $error = $e->getMessage();
 }
 
