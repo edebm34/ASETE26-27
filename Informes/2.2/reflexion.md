@@ -91,6 +91,24 @@ Para saber cuántos préstamos tiene un usuario, añadí al repositorio un méto
 
 Puse la comprobación en el servicio y no en el repositorio porque el repositorio solo sirve para hablar con la base de datos, y decidir cuántos préstamos son demasiados es una regla de la biblioteca, que corresponde al servicio. Usé una excepción en lugar de devolver simplemente `false` para poder saber por qué se rechaza el préstamo y así mostrar el mensaje adecuado en cada caso. La comprobación está dentro del bloque `try` para que el `finally` anote en el log también los intentos que fallan por el límite.
 
+## Capturas de pantalla
+
+### Composer con autoload
+![composer.json con autoload](capturas/json.png)
+
+### App funcionando sin require-once
+![App funcionando sin require-once](capturas/funcionando.png)
+
+### `try/catch` funcionando
+![try/catch funcionando](capturas/excepcionprestamo.png)
+
+### dump-autoload
+![dump-autoload](capturas/dumpautoload.png)
+
+### Manejador global
+![Manejador global](capturas/global.png)
+
+
 ## Autoevaluación
 
 He aprendido para qué sirven los namespaces y cómo Composer carga las
