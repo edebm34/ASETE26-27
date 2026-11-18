@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Exceptions\MaterialNoDisponibleException;
+use App\Exceptions\LimitePrestamosException;
 use App\Repos\MaterialRepo;
 
 class PrestamoService
 {
+    private const MAX_PRESTAMOS_ACTIVOS = 3;
+    
     public function __construct(private MaterialRepo $repo) {}
 
     /**
@@ -25,6 +28,10 @@ class PrestamoService
             throw new MaterialNoDisponibleException($material->getTitulo());
         }
 
+        if ($this->repo->contarPrestamosActivos($usuarioId) >= self::MAX_PRESTAMOS_ACTIVOS) {
+            throw new LimitePrestamosException($usuarioId, self::MAX_PRESTAMOS_ACTIVOS);
+        }
+        
         $material->prestar();
         $this->repo->setDisponible($materialId, false);
         $this->repo->registrarPrestamo($materialId, $usuarioId);

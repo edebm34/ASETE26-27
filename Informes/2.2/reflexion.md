@@ -3,6 +3,7 @@
 ## Autoloading, namespaces y excepciones
 
 **Nombre:** Ernesto de Jesús Beltrán Marmolejos
+**Repo:** [Repositorio ASETE26-27](https://github.com/edebm34/ASETE26-27/tree/main/MiniApp%20Biblioteca%20POO)
 
 ### 1. Namespaces: ¿qué problema resuelven? Pon un ejemplo de colisión.
 
@@ -56,7 +57,6 @@ try {
         $this->repo->setDisponible($materialId, false);
         $this->repo->registrarPrestamo($materialId, $usuarioId);
     } finally {
-        // Se ejecuta SIEMPRE, haya excepción o no
         $material->log(
             "Intento de préstamo de '{$material->getTitulo()}' al usuario {$usuarioId}"
         );
@@ -82,6 +82,14 @@ estricta en los argumentos y valores devueltos por las funciones. Sin
 esto, PHP puede convertir algunos tipos automáticamente. Es buena
 práctica porque ayuda a encontrar errores y evita conversiones
 inesperadas.
+
+### Ampliación A1 · Límite de 3 préstamos activos por usuario
+
+En esta ampliación he hecho que un usuario no pueda tener más de 3 libros, revistas o DVDs prestados a la vez. Si intenta pedir uno más, el programa se lo impide y lanza un error propio llamado `LimitePrestamosException`, que creé con el mismo formato que la excepción que ya había para cuando un material no está disponible.
+
+Para saber cuántos préstamos tiene un usuario, añadí al repositorio un método llamado `contarPrestamosActivos`, que le pregunta a la base de datos cuántos préstamos de ese usuario todavía no se han devuelto. Un préstamo cuenta como no devuelto cuando su fecha de devolución está vacía. Después, en el servicio de préstamos, antes de prestar nada, miro ese número y, si ya es 3 o más, lanzo la excepción. El 3 lo guardé en una constante para no tenerlo escrito suelto en el código como un número mágico y poder cambiarlo fácilmente.
+
+Puse la comprobación en el servicio y no en el repositorio porque el repositorio solo sirve para hablar con la base de datos, y decidir cuántos préstamos son demasiados es una regla de la biblioteca, que corresponde al servicio. Usé una excepción en lugar de devolver simplemente `false` para poder saber por qué se rechaza el préstamo y así mostrar el mensaje adecuado en cada caso. La comprobación está dentro del bloque `try` para que el `finally` anote en el log también los intentos que fallan por el límite.
 
 ## Autoevaluación
 

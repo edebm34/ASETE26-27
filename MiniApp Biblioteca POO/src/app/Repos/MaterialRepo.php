@@ -8,6 +8,7 @@ use App\Classes\Libro;
 use App\Classes\MaterialBiblioteca;
 use App\Classes\Revista;
 use App\Exceptions\MaterialNoEncontradoException;
+use RuntimeException;
 
 require_once __DIR__ . '/../Config/db.php';
 
@@ -69,5 +70,14 @@ class MaterialRepo {
             'INSERT INTO prestamos (material_id, usuario_id) VALUES (?, ?)'
         );
         $stmt->execute([$materialId, $usuarioId]);
+    }
+    
+    public function contarPrestamosActivos(int $usuarioId): int {
+        $stmt = db()->prepare(
+            'SELECT COUNT(*) FROM prestamos
+                WHERE usuario_id = ? AND fecha_devolucion IS NULL'
+        );
+        $stmt->execute([$usuarioId]);
+        return (int)$stmt->fetchColumn();
     }
 }
